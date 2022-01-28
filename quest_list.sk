@@ -1,0 +1,1025 @@
+# ################################################
+#
+# CompCraft Quest List
+#
+#   command: /quests
+#
+# ################################################
+
+# Quest 1: Juggernaut: Equipt a full set of protection III, netherrite armor
+# Details: every armor piece can ONLY be enchanted with Protection 3, nothing else
+on player change armor:
+    if {Quests_1.CompletedFor.%player's uuid%} is not set:
+        set {Quests_1.CompletedFor.%player's uuid%} to false
+    if {Quests_1.CompletedFor.%player's uuid%} is false:
+        if player's legs is netherite leggings of protection 3:
+            if player's helmet is netherite helmet of protection 3:
+                if player's chestplate is netherite chestplate of protection 3:
+                    if player's boots is netherite boots of protection 3:
+                        broadcast "[&e&lCompQuests&f] %player% has completed &c&lJuggernaut&r! They have been rewarded with a unique item!"
+                        set {Quests_1.CompletedFor.%player's uuid%} to true
+                        launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+                        wait 10 ticks
+                        launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+                        wait 10 ticks
+                        launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+                        # execute console command "/minecraft:give %player% shield{display:{Name:'{"text":"Valyrian Steel","color":"red","bold":false,"italic":false}',Lore:['{"text":"The last shield crafted","color":"gray","bold":false,"italic":false}','{"text":"by the lone survivor","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: None","color":"gray","bold":false,"italic":false}']},Unbreakable:1b,Enchantments:[{id:"minecraft:thorns",lvl:4s}],AttributeModifiers:[{AttributeName:"generic.attack_damage",Name:"generic.attack_damage",Amount:4,Operation:0,UUID:[I;-1518289150,-1009760721,-1784330596,-444419214],Slot:"offhand"}]} 1"
+                        execute console command "/tag %player% add 1"
+# for testing Quest 1
+command /resetquest1:
+    permission: minecraft.op
+    trigger:
+        set {Quests_1.CompletedFor.%player's uuid%} to false
+        send "[&e&lCompQuests&f] Quest 1 Reset." to player
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+# Quest 2: New Frontier: Craft a beacon
+# Details: It can be picked up or crafted
+# on pick up of beacon:
+#     if player is "LuuMiz" or "Warfcat":
+#        if {Quests_2.CompletedFor.%player's uuid%} is not set:
+#            set {Quests_2.CompletedFor.%player's uuid%} to false
+#        if {Quests_2.CompletedFor.%player's uuid%} is false:
+#            broadcast "[&e&lCompQuests&f] %player% has completed New Frontier! They have been rewarded with a unique item!"
+#            set {Quests_2.CompletedFor.%player's uuid%} to true
+#            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+#            wait 10 ticks
+#            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+#            wait 10 ticks
+#            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+on craft:
+    if event-item is beacon:
+        if {Quests_2.CompletedFor.%player's uuid%} is not set:
+            set {Quests_2.CompletedFor.%player's uuid%} to false
+        if {Quests_2.CompletedFor.%player's uuid%} is false:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lNew Frontier&r! They have been rewarded with a unique item!"
+            set {Quests_2.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% wooden_shovel{display:{Name:'{"text":"Mudslinger","color":"dark_green","bold":false,"italic":false}',Lore:['{"text":"Those who mine fast","color":"gray","bold":false,"italic":false}','{"text":"dig slow","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Mining Fatigue","color":"gray","bold":false,"italic":false}']},HideFlags:1,Unbreakable:1b,Enchantments:[{id:"minecraft:soul_speed",lvl:1s}],AttributeModifiers:[{AttributeName:"generic.attack_speed",Name:"generic.attack_speed",Amount:0,Operation:0,UUID:[I;1322989452,131287449,-1297571479,-352711953],Slot:"mainhand"}]} 1"
+            execute console command "/tag %player% add 2"
+# for testing Quest 2
+command /resetquest2:
+    permission: minecraft.op
+    trigger:
+        set {Quests_2.CompletedFor.%player's uuid%} to false
+        send "[&e&lCompQuests&f] Quest 2 Reset." to player
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+# Quest 3: Ingenious Storage: Obtain an ender chest
+# Details: It can be picked up or crafted
+# on pick up of ender chest:
+#     if player is "LuuMiz" or "Warfcat":
+#         if {Quests_3.CompletedFor.%player's uuid%} is not set:
+#             set {Quests_3.CompletedFor.%player's uuid%} to false
+#         if {Quests_3.CompletedFor.%player's uuid%} is false:
+#             broadcast "[&e&lCompQuests&f] Congratulations! You completed a quest!"
+#             set {Quests_3.CompletedFor.%player's uuid%} to true
+#             launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+#             wait 10 ticks
+#             launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+#             wait 10 ticks
+#             launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+# on craft:
+#     if event-item is ender chest:
+#         if player is "LuuMiz" or "Warfcat":
+#             if {Quests_3.CompletedFor.%player's uuid%} is not set:
+#                 set {Quests_3.CompletedFor.%player's uuid%} to false
+#             if {Quests_3.CompletedFor.%player's uuid%} is false:
+#                broadcast "[&e&lCompQuests&f] Congratulations! You completed a quest!"
+#                  set {Quests_3.CompletedFor.%player's uuid%} to true
+#                launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+#                wait 10 ticks
+#                launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+#                wait 10 ticks
+#                launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+
+# Quest 3: A Colorful Sight: Place 64 of each color wool
+# Details: Needs to be placed
+on place of white wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfWhiteWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfWhiteWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of orange wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfOrangeWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfOrangeWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of magenta wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfMagentaWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfMagentaWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of light blue wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfLightBlueWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfLightBlueWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of yellow wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfYellowWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfYellowWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of lime wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfLimeWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfLimeWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of pink wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfPinkWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfPinkWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of gray wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfGrayWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfGrayWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of light gray wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfLightGrayWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfLightGrayWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of cyan wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfCyanWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfCyanWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of purple wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfPurpleWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfPurpleWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of blue wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfBlueWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfBlueWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of brown wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfBrownWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfBrownWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of green wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfGreenWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfGreenWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of red wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfRedWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfRedWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+            execute console command "/tag %player% add 3"
+on place of black wool:
+    if {Quests_3.CompletedFor.%player's uuid%} is not set:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+    if {Quests_3.CompletedFor.%player's uuid%} is false:
+        add 1 to {Quests_3.AmountOfBlackWoolPlaced.%player's uuid%}
+    if {Quests_3.AmountOfBlackWoolPlaced.%player's uuid%} >= 64:
+        if checkQuest3WoolPlaced(player) is true:
+            broadcast "[&e&lCompQuests&f] %player% has completed &c&lA Colorful Sight&r! They have been rewarded with a unique item!"
+            set {Quests_3.CompletedFor.%player's uuid%} to true
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            wait 10 ticks
+            launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+            # execute console command "/minecraft:give %player% shears{display:{Name:'{"text":"Butcher\'s Shears","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"The sharpest shears","color":"gray","bold":false,"italic":false}','{"text":"cut straight to the bone","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Porkchop Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:cookedchops,Enchantments:[{id:"minecraft:smite",lvl:1s}]} 1"
+
+
+function checkQuest3WoolPlaced(p: player) :: boolean:
+    set {_uuid} to uuid of {_p}
+    if {Quests_3.CompletedFor.%{_uuid}%} is not true:
+        if {Quests_3.AmountOfWhiteWoolPlaced.%{_uuid}%} >= 64:
+            if {Quests_3.AmountOfOrangeWoolPlaced.%{_uuid}%} >= 64:
+                if {Quests_3.AmountOfMagentaWoolPlaced.%{_uuid}%} >= 64:
+                    if {Quests_3.AmountOfLightBlueWoolPlaced.%{_uuid}%} >= 64:
+                        if {Quests_3.AmountOfYellowWoolPlaced.%{_uuid}%} >= 64:
+                            if {Quests_3.AmountOfLimeWoolPlaced.%{_uuid}%} >= 64:
+                                if {Quests_3.AmountOfPinkWoolPlaced.%{_uuid}%} >= 64:
+                                    if {Quests_3.AmountOfGrayWoolPlaced.%{_uuid}%} >= 64:
+                                        if {Quests_3.AmountOfLightGrayWoolPlaced.%{_uuid}%} >= 64:
+                                            if {Quests_3.AmountOfCyanWoolPlaced.%{_uuid}%} >= 64:
+                                                if {Quests_3.AmountOfPurpleWoolPlaced.%{_uuid}%} >= 64:
+                                                    if {Quests_3.AmountOfBlueWoolPlaced.%{_uuid}%} >= 64:
+                                                        if {Quests_3.AmountOfBrownWoolPlaced.%{_uuid}%} >= 64:
+                                                            if {Quests_3.AmountOfGreenWoolPlaced.%{_uuid}%} >= 64:
+                                                                if {Quests_3.AmountOfRedWoolPlaced.%{_uuid}%} >= 64:
+                                                                    if {Quests_3.AmountOfBlackWoolPlaced.%{_uuid}%} >= 64:
+                                                                        return true
+function checkQuest3WoolPlacedProgress(p: player) :: number:
+    set {_uuid} to uuid of {_p}
+    set {_n} to 0
+    if {Quests_3.AmountOfWhiteWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfOrangeWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfMagentaWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfLightBlueWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfYellowWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfLimeWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfPinkWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfGrayWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfLightGrayWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfCyanWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfPurpleWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfBlueWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfBrownWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfGreenWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfRedWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    if {Quests_3.AmountOfBlackWoolPlaced.%{_uuid}%} >= 64:
+        add 1 to {_n}
+    return {_n}
+
+# for testing Quest 3
+command /resetquest3:
+    permission: minecraft.op
+    trigger:
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+        set {Quests_3.AmountOfWhiteWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfOrangeWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfMagentaWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfLightBlueWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfYellowWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfLimeWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfPinkWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfGrayWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfLightGrayWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfCyanWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfPurpleWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfBlueWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfBrownWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfGreenWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfRedWoolPlaced.%player's uuid%} to 0
+        set {Quests_3.AmountOfBlackWoolPlaced.%player's uuid%} to 0
+        send "[&e&lCompQuests&f] Quest 3 Reset." to player
+command /quest3place:
+    permission: minecraft.op
+    trigger:
+        set {Quests_3.AmountOfWhiteWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfOrangeWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfMagentaWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfLightBlueWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfYellowWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfLimeWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfPinkWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfGrayWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfLightGrayWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfCyanWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfPurpleWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfBlueWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfBrownWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfGreenWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfRedWoolPlaced.%player's uuid%} to 63
+        set {Quests_3.AmountOfBlackWoolPlaced.%player's uuid%} to 63
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+# Quest 4: Undead Rising: Fully dress a skeleton in Protection 4 Diamond Armor
+# Details: Unsure the best route to go about this, holding off for now.
+#           /summon skeleton ~ ~ ~ {CanPickUpLoot:1b}
+every 5 seconds in world "world":
+    loop all players:
+        if {Quests_4.CompletedFor.%loop-player's uuid%} is not set:
+            set {Quests_4.CompletedFor.%loop-player's uuid%} to false
+        if {Quests_4.CompletedFor.%loop-player's uuid%} is false:
+            loop entities in radius 8 of loop-player:
+                if "%loop-entity-2%" is "skeleton":
+                    if loop-entity-2's helmet is diamond helmet of protection 4:
+                        if loop-entity-2's chestplate is diamond chestplate of protection 4:
+                            if loop-entity-2's leggings is diamond leggings of protection 4:
+                                if loop-entity-2's boots is diamond boots of protection 4:
+                                    loop all players:
+                                        send "[&e&lCompQuests&f] %loop-player-1% has completed &c&lUndead Rising&r! They have been rewarded with a unique item!" to loop-player-2
+                                    set {Quests_4.CompletedFor.%loop-player-1's uuid%} to true
+                                    launch ball large coloured red, purple and white fading to light green and black at loop-player's location with duration 1
+                                    wait 10 ticks
+                                    launch ball large coloured red, purple and white fading to light green and black at loop-player's location with duration 1
+                                    wait 10 ticks
+                                    launch ball large coloured red, purple and white fading to light green and black at loop-player's location with duration 1
+                                    # execute console command "/minecraft:give @p bow{display:{Name:'{"text":"Funny Bow","color":"dark_aqua","bold":false,"italic":false}',Lore:['{"text":"Taken from the","color":"gray","bold":false,"italic":false}','{"text":"most fancy","color":"gray","bold":false,"italic":false}','{"text":"dressed skeleton","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: None","color":"gray","bold":false,"italic":false}']},Enchantments:[{id:"minecraft:flame",lvl:1s},{id:"minecraft:infinity",lvl:1s}]} 1"
+                                    execute console command "/tag %loop-player-1% add 4"
+# for testing Quest 4
+command /resetquest4:
+    permission: minecraft.op
+    trigger:
+        set {Quests_4.CompletedFor.%player's uuid%} to false
+        send "[&e&lCompQuests&f] Quest 4 Reset." to player
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+# Quest 5: Stealthy Inferno: Make a blaze invisible
+# Details: Just shoot an invis potion at a blaze
+# Bugs: It CANNOT hit the blaze directly to trigger quest completion
+
+on shoot:
+    if {Quests_5.CompletedFor.%shooter's uuid%} is false:
+        #send "%projectile%" to shooter
+        if "%projectile%" is "thrown potion":
+            set {Quest_5.PlayerHasThrownPotionRecently.%shooter's uuid%} to true
+            wait 10 seconds
+            set {Quest_5.PlayerHasThrownPotionRecently.%shooter's uuid%} to false
+
+on projectile hit:
+    set {_Quest5.Continue} to false
+    loop players in radius 15 of location of event-block:
+        if {Quest_5.PlayerHasThrownPotionRecently.%loop-player's uuid%} is true:
+            if {Quests_5.CompletedFor.%loop-player's uuid%} is not set:
+                set {Quests_5.CompletedFor.%loop-player's uuid%} to false
+            if {Quests_5.CompletedFor.%loop-player's uuid%} is false:
+                loop entities in radius 5 of location of projectile:
+                    #send "%loop-entity-2%" to shooter
+                    if {Quests_5.CompletedFor.%loop-player's uuid%} is false:
+                        if "%loop-entity-2%" is "blaze":
+                            #send "found blaze! status: %{Quest_5.PlayerHasThrownPotionRecently.%shooter's uuid%}%" to shooter
+                            if loop-entity-2 has invisibility:
+                                #send "and has invis" to shooter
+                                broadcast "[&e&lCompQuests&f] %shooter% has completed &c&lStealthy Inferno&r! They have been rewarded with a unique item!"
+                                set {Quests_5.CompletedFor.%loop-player's uuid%} to true
+                                launch ball large coloured red, purple and white fading to light green and black at loop-player's location with duration 1
+                                wait 10 ticks
+                                launch ball large coloured red, purple and white fading to light green and black at loop-player's location with duration 1
+                                wait 10 ticks
+                                launch ball large coloured red, purple and white fading to light green and black at loop-player's location with duration 1
+                                # execute console command "/minecraft:give @p blaze_rod{display:{Name:'{"text":"Turbo Rod","color":"#FF871F","bold":false,"italic":false}',Lore:['{"text":"Want to see some","color":"gray","bold":false,"italic":false}','{"text":"real speeeeeed?","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Speed","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:blazerod1,Enchantments:[{id:"minecraft:silk_touch",lvl:1s}],AttributeModifiers:[{AttributeName:"generic.movement_speed",Name:"generic.movement_speed",Amount:0.10,Operation:0,UUID:[I;1570012338,-1637922319,-2053082190,654319090],Slot:"mainhand"}]} 1"
+                                execute console command "/tag %shooter% add 4"
+on projectile collide:
+    if {Quest_5.PlayerHasThrownPotionRecently.%shooter's uuid%} is true:
+        if {Quests_5.CompletedFor.%shooter's uuid%} is false:
+            loop entities in radius 5 of location of projectile:
+                #send "%loop-entity%" to shooter
+                if {Quests_5.CompletedFor.%shooter's uuid%} is not set:
+                    set {Quests_5.CompletedFor.%shooter's uuid%} to false
+                if {Quests_5.CompletedFor.%shooter's uuid%} is false:
+                    if "%loop-entity%" is "blaze":
+                        #send "found blaze! status: %{Quest_5.PlayerHasThrownPotionRecently.%shooter's uuid%}%" to shooter
+                        if loop-entity has invisibility:
+                            #send "and has invis" to shooter
+                            broadcast "[&e&lCompQuests&f] %shooter% has completed &c&lStealthy Inferno&r! They have been rewarded with a unique item!"
+                            set {Quests_5.CompletedFor.%shooter's uuid%} to true
+                            launch ball large coloured red, purple and white fading to light green and black at shooter's location with duration 1
+                            wait 10 ticks
+                            launch ball large coloured red, purple and white fading to light green and black at shooter's location with duration 1
+                            wait 10 ticks
+                            launch ball large coloured red, purple and white fading to light green and black at shooter's location with duration 1
+                            # execute console command "/minecraft:give @p blaze_rod{display:{Name:'{"text":"Turbo Rod","color":"#FF871F","bold":false,"italic":false}',Lore:['{"text":"Want to see some","color":"gray","bold":false,"italic":false}','{"text":"real speeeeeed?","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Speed","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:blazerod1,Enchantments:[{id:"minecraft:silk_touch",lvl:1s}],AttributeModifiers:[{AttributeName:"generic.movement_speed",Name:"generic.movement_speed",Amount:0.10,Operation:0,UUID:[I;1570012338,-1637922319,-2053082190,654319090],Slot:"mainhand"}]} 1"
+                            execute console command "/tag %shooter% add 5"
+# for testing Quest 5
+command /resetquest5:
+    permission: minecraft.op
+    trigger:
+        set {Quests_5.CompletedFor.%player's uuid%} to false
+        send "[&e&lCompQuests&f] Quest 5 Reset." to player
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+# Quest 6: A New Light: Obtain 64 glowstone blocks
+# Details: Pick up or craft glowstone blocks and have 64 or more in your inventory
+
+#on pick up of glowstone block:
+#    if player is "LuuMiz" or "Warfcat":
+#        if {Quests_6.CompletedFor.%player's uuid%} is not set:
+#            set {Quests_6.CompletedFor.%player's uuid%} to false
+#        if {Quests_6.CompletedFor.%player's uuid%} is false:
+#            wait 3 ticks
+#            set {_amountOfGlowstone} to amount of glowstone block in player's inventory
+#            send "%{_amountOfGlowstone}%" to player
+#            if {_amountOfGlowstone} >= 64:
+#                broadcast "[&e&lCompQuests&f] %player% has completed A New Light! They have been rewarded with a unique item!"
+#                set {Quests_6.CompletedFor.%player's uuid%} to true
+#                launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+#                wait 10 ticks
+#                launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+#                wait 10 ticks
+#                launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+on craft:
+    if event-item is glowstone block:
+        if {Quests_6.CompletedFor.%player's uuid%} is not set:
+            set {Quests_6.CompletedFor.%player's uuid%} to false
+        if {Quests_6.CompletedFor.%player's uuid%} is false:
+            wait 3 ticks
+            set {_amountOfGlowstone} to amount of glowstone block in player's inventory
+            #send "%{_amountOfGlowstone}%" to player
+            if {_amountOfGlowstone} >= 64:
+                broadcast "[&e&lCompQuests&f] %player% has completed &c&lA New Light&r! They have been rewarded with a unique item!"
+                set {Quests_6.CompletedFor.%player's uuid%} to true
+                launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+                wait 10 ticks
+                launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+                wait 10 ticks
+                launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+                # execute console command "/minecraft:give @p witch_spawn_egg{display:{Name:'{"text":"Witch Spawn Egg","bold":false,"italic":false}',Lore:['{"text":"Spawns only the strongest","color":"gray","bold":false,"italic":false}','{"text":"from Hogwarts","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Spawn Witch","color":"gray","bold":false,"italic":false}']},HideFlags:3,Enchantments:[{id:"minecraft:riptide",lvl:1s}]} 1"
+                execute console command "/tag %player% add 6"
+# for testing Quest 6
+command /resetquest6:
+    permission: minecraft.op
+    trigger:
+        set {Quests_6.CompletedFor.%player's uuid%} to false
+        send "[&e&lCompQuests&f] Quest 6 Reset." to player
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+# Quest 7: Scuted HighFlyer: Hold 64 Scutes in mainhand while flying with an elytra
+# Details: Requires SKStuff
+every 5 seconds in "world":
+    loop all players:
+        if {Quests_7.CompletedFor.%loop-player's uuid%} is false:
+            set {_amountOfScutes} to amount of scute in loop-player's inventory
+            #send "%{_amountOfScutes}%" to loop-player
+            if {_amountOfScutes} >= 64:
+                #send "got scutes" to loop-player
+                if block at location under loop-player is air:
+                    #send "in air" to loop-player
+                    if loop-player's chestplate is elytra:
+                        loop all players:
+                            send "[&e&lCompQuests&f] %loop-player-1% has completed &c&lScuted HighFlyer&r! They have been rewarded with a unique item!" to loop-player-2
+                        set {Quests_7.CompletedFor.%loop-player's uuid%} to true
+                        launch ball large coloured red, purple and white fading to light green and black at loop-player's location with duration 1
+                        wait 10 ticks
+                        launch ball large coloured red, purple and white fading to light green and black at loop-player's location with duration 1
+                        wait 10 ticks
+                        launch ball large coloured red, purple and white fading to light green and black at loop-player's location with duration 1
+                        # execute console command "/minecraft:give @p turtle_helmet{display:{Name:'{"text":"Shell-Met","color":"green","bold":false,"italic":false}',Lore:['{"text":"The shell that got","color":"gray","bold":false,"italic":false}','{"text":"Crush through the","color":"gray","bold":false,"italic":false}','{"text":"E.A.C","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: None","color":"gray","bold":false,"italic":false}']},Unbreakable:1b,Enchantments:[{id:"minecraft:respiration",lvl:4s},{id:"minecraft:aqua_affinity",lvl:4s}]} 1"
+                        execute console command "/tag %loop-player% add 7"
+# for testing Quest 7
+command /resetquest7:
+    permission: minecraft.op
+    trigger:
+        set {Quests_7.CompletedFor.%player's uuid%} to false
+        send "[&e&lCompQuests&f] Quest 7 Reset." to player
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+# Quest 8: Chain Linked: Wear a full set of unbreaking 3 chainmail armor
+on player change armor:
+    if {Quests_8.CompletedFor.%player's uuid%} is not set:
+        set {Quests_8.CompletedFor.%player's uuid%} to false
+    if {Quests_8.CompletedFor.%player's uuid%} is false:
+        if player's legs is chainmail leggings of unbreaking 3:
+            if player's helmet is chainmail helmet of unbreaking 3:
+                if player's chestplate is chainmail chestplate of unbreaking 3:
+                    if player's boots is chainmail boots of unbreaking 3:
+                        broadcast "[&e&lCompQuests&f] %player% has completed &c&lChain Linked&r! They have been rewarded with a unique item!"
+                        set {Quests_8.CompletedFor.%player's uuid%} to true
+                        launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+                        wait 10 ticks
+                        launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+                        wait 10 ticks
+                        launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+                        # execute console command "/minecraft:give @p iron_boots{display:{Name:'{"text":"Golem Booties","color":"gold","bold":false,"italic":false}',Lore:['{"text":"Performing ultimate","color":"gray","bold":false,"italic":false}','{"text":"sacrifices for the","color":"gray","bold":false,"italic":false}','{"text":"almighty Joe","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Iron Ingot Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,Enchantments:[{id:"minecraft:soul_speed",lvl:1s}]} 1"
+                        execute console command "/tag %player% add 8"
+# for testing Quest 8
+command /resetquest8:
+    permission: minecraft.op
+    trigger:
+        set {Quests_8.CompletedFor.%player's uuid%} to false
+        send "[&e&lCompQuests&f] Quest 8 Reset." to player
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+# Quest 9: Hammer Time: Kill 30 Iron Golems
+on death:
+    if "%victim%" is "iron golem":
+        if {Quests_9.CompletedFor.%attacker's uuid%} is not set:
+            set {Quests_9.CompletedFor.%attacker's uuid%} to false
+        if {Quests_9.CompletedFor.%attacker's uuid%} is false:
+            add 1 to {Quests_9.AmountOfIronGolemsKilled.%attacker's uuid%}
+            if {Quests_9.AmountOfIronGolemsKilled.%attacker's uuid%} >= 30:
+                broadcast "[&e&lCompQuests&f] %attacker% has completed &c&lHammer Time&r! They have been rewarded with a unique item!"
+                set {Quests_9.CompletedFor.%attacker's uuid%} to true
+                launch ball large coloured red, purple and white fading to light green and black at attacker's location with duration 1
+                wait 10 ticks
+                launch ball large coloured red, purple and white fading to light green and black at attacker's location with duration 1
+                wait 10 ticks
+                launch ball large coloured red, purple and white fading to light green and black at attacker's location with duration 1
+                # execute console command "/minecraft:give @p diamond{display:{Name:'{"text":"Infinity Stone","color":"aqua","bold":false,"italic":false}',Lore:['{"text":"One small step for","color":"gray","bold":false,"italic":false}','{"text":"Joe, one giant leap","color":"gray","bold":false,"italic":false}','{"text":"for Joe-kind","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Diamond Drops","color":"gray","bold":false,"italic":false}']},HideFlags:1,tag:diamonddrop1,Enchantments:[{id:"minecraft:unbreaking",lvl:1s}]} 1"
+                execute console command "/tag %attacker% add 9"
+# for testing Quest 9
+command /resetquest9:
+    permission: minecraft.op
+    trigger:
+        set {Quests_9.CompletedFor.%player's uuid%} to false
+        set {Quests_9.AmountOfIronGolemsKilled.%player's uuid%} to 0
+        send "[&e&lCompQuests&f] Quest 9 Reset." to player
+command /quest9kills:
+    permission: minecraft.op
+    trigger:
+        set {Quests_9.AmountOfIronGolemsKilled.%player's uuid%} to 29
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+# Quest 10: Master Baker: Eat 250 slices of cake
+on right click on cake:
+    if player's food level is not 10:
+        if {Quests_10.CompletedFor.%player's uuid%} is not set:
+            set {Quests_10.CompletedFor.%player's uuid%} to false
+        if {Quests_10.CompletedFor.%player's uuid%} is false:
+            add 1 to {Quests_10.AmountOfCakeSlicesEaten.%player's uuid%}
+            if {Quests_10.AmountOfCakeSlicesEaten.%player's uuid%} >= 250:
+                broadcast "[&e&lCompQuests&f] %player% has completed &c&lMaster Baker&r! They have been rewarded with a unique item!"
+                set {Quests_10.CompletedFor.%player's uuid%} to true
+                launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+                wait 10 ticks
+                launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+                wait 10 ticks
+                launch ball large coloured red, purple and white fading to light green and black at player's location with duration 1
+                # execute console command "/minecraft:give @p iron_hoe{display:{Name:'{"text":"The Baker\'s Hoe","color":"dark_purple","bold":false,"italic":false}',Lore:['{"text":"I love Joe","color":"gray","bold":false,"italic":false}','{"text":"like a fat kid","color":"gray","bold":false,"italic":false}','{"text":"loves cake","color":"gray","bold":false,"italic":false}','{"text":"----------","color":"gray","bold":false,"italic":false}','{"text":"Effect: Cake Drops","color":"gray","bold":false,"italic":false}']},Unbreakable:1b,Enchantments:[{id:"minecraft:fortune",lvl:3s}]} 1"
+                execute console command "/tag %player% add 10"
+# for testing Quest 10
+command /resetquest10:
+    permission: minecraft.op
+    trigger:
+        set {Quests_10.CompletedFor.%player's uuid%} to false
+        set {Quests_10.AmountOfCakeSlicesEaten.%player's uuid%} to 0
+        send "[&e&lCompQuests&f] Quest 10 Reset." to player
+command /quest10eats:
+    permission: minecraft.op
+    trigger:
+        set {Quests_10.AmountOfCakeSlicesEaten.%player's uuid%} to 249
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+command /completequests:
+    permission: minecraft.op
+    trigger:
+        set {Quests_1.CompletedFor.%player's uuid%} to true
+        set {Quests_2.CompletedFor.%player's uuid%} to true
+        set {Quests_3.CompletedFor.%player's uuid%} to true
+        set {Quests_4.CompletedFor.%player's uuid%} to true
+        set {Quests_5.CompletedFor.%player's uuid%} to true
+        set {Quests_6.CompletedFor.%player's uuid%} to true
+        set {Quests_7.CompletedFor.%player's uuid%} to true
+        set {Quests_8.CompletedFor.%player's uuid%} to true
+        set {Quests_9.CompletedFor.%player's uuid%} to true
+        set {Quests_10.CompletedFor.%player's uuid%} to true
+#        CheckIfPlayer(player)
+
+command /uncompletequests:
+    permission: minecraft.op
+    trigger:
+        set {Quests_1.CompletedFor.%player's uuid%} to false
+        set {Quests_2.CompletedFor.%player's uuid%} to false
+        set {Quests_3.CompletedFor.%player's uuid%} to false
+        set {Quests_4.CompletedFor.%player's uuid%} to false
+        set {Quests_5.CompletedFor.%player's uuid%} to false
+        set {Quests_6.CompletedFor.%player's uuid%} to false
+        set {Quests_7.CompletedFor.%player's uuid%} to false
+        set {Quests_8.CompletedFor.%player's uuid%} to false
+        set {Quests_9.CompletedFor.%player's uuid%} to false
+        set {Quests_10.CompletedFor.%player's uuid%} to false
+        set {Quests_10.AmountOfCakeSlicesEaten.%player's uuid%} to 0
+        set {Quests_9.AmountOfIronGolemsKilled.%player's uuid%} to 0
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+# Function to check if all quests are completed
+#function CheckIfPlayer(p:player):
+#    if {Quests_10.CompletedFor.%{_p}'s uuid%} is true:
+#        if {Quests_9.CompletedFor.%%{_p}%'s uuid%} is true:
+#            if {Quests_8.CompletedFor.%%{_p}%'s uuid%} is true:
+#                if {Quests_7.CompletedFor.%%{_p}%'s uuid%} is true:
+#                    if {Quests_6.CompletedFor.%pl%{_p}%ayer's uuid%} is true:
+#                        if {Quests_5.CompletedFor.%%{_p}%'s uuid%} is true:
+#                            if {Quests_4.CompletedFor.%%{_p}%'s uuid%} is true:
+#                                if {Quests_3.CompletedFor.%%{_p}%'s uuid%} is true:
+#                                    if {Quests_2.CompletedFor.%%{_p}%'s uuid%} is true:
+#                                        if {Quests_1.CompletedFor.%%{_p}%'s uuid%} is true:
+#                                            send "complete quests" to {_p}
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+# Main GUI for different Quest Types
+# Currently Regular Quests and Pet Quests
+command /quests [<text>] [<offlineplayer>]:
+    executable by: console and players
+    trigger:
+        if arg-1 is "ASDDFSCVERTWERWER123464512":
+            wait 3 ticks
+            open chest with 3 rows named "&2CompCraft Quests" to arg-2
+            set {_chestSlot} to 0
+            loop 27 times:
+                format slot {_chestSlot} of arg-2 with gray stained glass pane named "&6" to be unstealable
+                add 1 to {_chestSlot}
+            format slot 12 of arg-2 with book and quill named "&2CompCraft Quest Journal" to close then run [execute console command "/cquestlist %arg-2%"]
+            format slot 14 of arg-2 with creeper spawn egg named "&3CompCraft Pet Quests" to close then run [execute console command "/cpetquestlist %arg-2%"]
+        else:
+            wait 3 ticks
+            open chest with 3 rows named "&2CompCraft Quests" to player
+            set {_chestSlot} to 0
+            loop 27 times:
+                format slot {_chestSlot} of player with gray stained glass pane named "&6" to be unstealable
+                add 1 to {_chestSlot}
+            format slot 12 of player with book and quill named "&2CompCraft Quest Journal" to close then run [execute console command "/cquestlist %player%"]
+            format slot 14 of player with creeper spawn egg named "&3CompCraft Pet Quests" to close then run [execute console command "/cpetquestlist %player%"]
+
+# GUI for all quests + descriptions and their completed status
+command /cquestlist [<offlineplayer>]:
+    permission:minecraft.op
+    executable by: console
+    trigger:
+        wait 3 ticks
+        open chest with 4 rows named "&2CompCraft Quest Journal" to arg-1
+        set {_chestSlot} to 0
+        loop 36 times:
+            format slot {_chestSlot} of arg-1 with gray stained glass pane named "&6" to be unstealable
+            add 1 to {_chestSlot}
+        #wait 1 tick
+
+        format slot 31 of arg-1 with barrier named "&cBack" to close then run [execute console command "/quests ASDDFSCVERTWERWER123464512 %arg-1%"]
+
+        if {Quests_1.CompletedFor.%arg-1's uuid%} is not set:
+            set {Quests_1.CompletedFor.%arg-1's uuid%} to false
+        if {Quests_1.CompletedFor.%arg-1's uuid%} is false:
+            format slot 10 of arg-1 with red stained glass named "&cQuest 1: Juggernaut" with lore "&8» &7Equip A Full Set Of", "&7   Protection III, Netherite Armor", "&6" and "&c&lIncomplete" to be unstealable
+        else:
+            format slot 10 of arg-1 with lime stained glass named "&aQuest 1: Juggernaut" with lore "&8» &7Equip A Full Set Of", "&7   Protection III, Netherite Armor", "&6" and "&a&lCompleted" to be unstealable
+        
+        if {Quests_2.CompletedFor.%arg-1's uuid%} is not set:
+            set {Quests_2.CompletedFor.%arg-1's uuid%} to false
+        if {Quests_2.CompletedFor.%arg-1's uuid%} is false:
+            format slot 11 of arg-1 with red stained glass named "&cQuest 2: New Frontier" with lore "&8» &7Craft A Beacon", "&6" and "&c&lIncomplete" to be unstealable
+        else:
+            format slot 11 of arg-1 with lime stained glass named "&aQuest 2: New Frontier" with lore "&8» &7Craft A Beacon", "&6" and "&a&lCompleted" to be unstealable
+
+        set {_wool} to checkQuest3WoolPlacedProgress(arg-1)
+        if {Quests_3.CompletedFor.%arg-1's uuid%} is not set:
+            set {Quests_3.CompletedFor.%arg-1's uuid%} to false
+        if {Quests_3.CompletedFor.%arg-1's uuid%} is false:
+            if {_wool} > 0:
+                format slot 12 of arg-1 with orange stained glass named "&6Quest 3: A Colorful Sight" with lore "&8» &7Place 64 Of Each Color Wool", "&6" and "&6&lIn Progress (%{_wool}% / 16)" to be unstealable
+            else:
+                format slot 12 of arg-1 with red stained glass named "&cQuest 3: A Colorful Sight" with lore "&8» &7Place 64 Of Each Color Wool", "&6" and "&c&lIncomplete" to be unstealable
+        else:
+            format slot 12 of arg-1 with lime stained glass named "&aQuest 3: A Colorful Sight" with lore "&8» &7Place 64 Of Each Color Wool", "&6" and "&a&lCompleted" to be unstealable
+            
+
+        if {Quests_4.CompletedFor.%arg-1's uuid%} is not set:
+            set {Quests_4.CompletedFor.%arg-1's uuid%} to false
+        if {Quests_4.CompletedFor.%arg-1's uuid%} is false:
+            format slot 13 of arg-1 with red stained glass named "&cQuest 4: Undead Rising" with lore "&8» &7Fully Dress A Skeleton In","&7   Protection IV, Diamond Armor", "&6" and "&c&lIncomplete" to be unstealable
+        else:
+            format slot 13 of arg-1 with lime stained glass named "&aQuest 4: Undead Rising" with lore "&8» &7Fully Dress A Skeleton In","&7   Protection IV, Diamond Armor", "&6" and "&a&lCompleted" to be unstealable
+            
+        if {Quests_5.CompletedFor.%arg-1's uuid%} is not set:
+            set {Quests_5.CompletedFor.%arg-1's uuid%} to false
+        if {Quests_5.CompletedFor.%arg-1's uuid%} is false:
+            format slot 14 of arg-1 with red stained glass named "&cQuest 5: Stealthy Inferno" with lore "&8» &7Hit A Blaze With An Invisibility Potion", "&6" and "&c&lIncomplete" to be unstealable
+        else:
+            format slot 14 of arg-1 with lime stained glass named "&aQuest 5: Stealthy Inferno" with lore "&8» &7Hit A Blaze With An Invisibility Potion", "&6" and "&a&lCompleted" to be unstealable
+            
+        if {Quests_6.CompletedFor.%arg-1's uuid%} is not set:
+            set {Quests_6.CompletedFor.%arg-1's uuid%} to false
+        if {Quests_6.CompletedFor.%arg-1's uuid%} is false:
+            format slot 15 of arg-1 with red stained glass named "&cQuest 6: A New Light" with lore "&8» &7Craft 64 Glowstone Blocks", "&6" and "&c&lIncomplete" to be unstealable
+        else:
+            format slot 15 of arg-1 with lime stained glass named "&aQuest 6: A New Light" with lore "&8» &7Craft 64 Glowstone Blocks", "&6" and "&a&lCompleted" to be unstealable
+            
+        if {Quests_7.CompletedFor.%arg-1's uuid%} is not set:
+            set {Quests_7.CompletedFor.%arg-1's uuid%} to false
+        if {Quests_7.CompletedFor.%arg-1's uuid%} is false:
+            format slot 16 of arg-1 with red stained glass named "&cQuest 7: Scuted HighFlyer" with lore "&8»&7 Hold 64 Scutes In Mainhand","&7   While Flying With An Elytra", "&6" and "&c&lIncomplete" to be unstealable
+        else:
+            format slot 16 of arg-1 with lime stained glass named "&aQuest 7: Scuted HighFlyer" with lore "&8»&7 Hold 64 Scutes In Mainhand","&7   While Flying With An Elytra", "&6" and "&a&lCompleted" to be unstealable
+            
+        if {Quests_8.CompletedFor.%arg-1's uuid%} is not set:
+            set {Quests_8.CompletedFor.%arg-1's uuid%} to false
+        if {Quests_8.CompletedFor.%arg-1's uuid%} is false:
+            format slot 19 of arg-1 with red stained glass named "&cQuest 8: Chain Linked" with lore "&8» &7Equip A Full Set Of Unbreaking III, Chainmail Armor", "&6" and "&c&lIncomplete" to be unstealable
+        else:
+            format slot 19 of arg-1 with lime stained glass named "&aQuest 8: Chain Linked" with lore "&8» &7Equip A Full Set Of Unbreaking III, Chainmail Armor", "&6" and "&a&lCompleted" to be unstealable
+            
+        if {Quests_9.CompletedFor.%arg-1's uuid%} is not set:
+            set {Quests_9.CompletedFor.%arg-1's uuid%} to false
+        if {Quests_9.CompletedFor.%arg-1's uuid%} is false:
+            if {Quests_9.AmountOfIronGolemsKilled.%arg-1's uuid%} > 0:
+                format slot 20 of arg-1 with orange stained glass named "&6Quest 9: Hammer Time" with lore "&8» &7Kill 30 Iron Golems", "&6" and "&6&lIn Progress (%{Quests_9.AmountOfIronGolemsKilled.%arg-1's uuid%}% / 30)" to be unstealable
+            else:
+                format slot 20 of arg-1 with red stained glass named "&cQuest 9: Hammer Time" with lore "&8» &7Kill 30 Iron Golems", "&6" and "&c&lIncomplete" to be unstealable
+        else:
+            format slot 20 of arg-1 with lime stained glass named "&aQuest 9: Hammer Time" with lore "&8» &7Kill 30 Iron Golems", "&6" and "&a&lCompleted" to be unstealable
+            
+        if {Quests_10.CompletedFor.%arg-1's uuid%} is not set:
+            set {Quests_10.CompletedFor.%arg-1's uuid%} to false
+        if {Quests_10.CompletedFor.%arg-1's uuid%} is false:
+            if {Quests_10.AmountOfCakeSlicesEaten.%arg-1's uuid%} > 0:
+                format slot 21 of arg-1 with orange stained glass named "&6Quest 10: Master Baker" with lore "&8» &7Eat 250 Slices Of Cake", "&6" and "&6&lIn Progress (%{Quests_10.AmountOfCakeSlicesEaten.%arg-1's uuid%}% / 250)" to be unstealable
+            else:
+                format slot 21 of arg-1 with red stained glass named "&cQuest 10: Master Baker" with lore "&8» &7Eat 250 Slices Of Cake", "&6" and "&c&lIncomplete" to be unstealable
+        else:
+            format slot 21 of arg-1 with lime stained glass named "&aQuest 10: Master Baker" with lore "&8» &7Eat 250 Slices Of Cake", "&6" and "&a&lCompleted" to be unstealable
+            
+
+# ################################################################################################################
+# ################################################################################################################
+# ################################################################################################################
+
+command /cpetquestlist [<offlineplayer>]:
+    permission:minecraft.op
+    executable by: console
+    trigger:
+        wait 3 ticks
+        open chest with 4 rows named "&3CompCraft Pet Quests" to arg-1
+        set {_chestSlot} to 0
+        loop 36 times:
+            format slot {_chestSlot} of arg-1 with gray stained glass pane named "&6" to be unstealable
+            add 1 to {_chestSlot}
+        #wait 1 tick
+
+        format slot 31 of arg-1 with barrier named "&cBack" to close then run [execute console command "/quests ASDDFSCVERTWERWER123464512 %arg-1%"]
+
+        if {quest_pet_beehive.amountMined.%arg-1's uuid%} is not set:
+            set {quest_pet_beehive.amountMined.%arg-1's uuid%} to 0
+        format slot 10 of arg-1 with bee nest named "&aPet Bee" with lore "&3» Harvest 25 Bee Nests", "&7   ", and "&7%{quest_pet_beehive.amountMined.%arg-1's uuid%}% / 25 " to be unstealable
+
+        if {quest_pet_sweetberry.amountMined.%arg-1's uuid%} is not set:
+            set {quest_pet_sweetberry.amountMined.%arg-1's uuid%} to 0
+        format slot 11 of arg-1 with sweet berries named "&aPet Fox" with lore "&3» Harvest 500 Sweet Berries", "&7   ", and "&7%{quest_pet_sweetberry.amountMined.%arg-1's uuid%}% / 500 " to be unstealable
+
+        format slot 12 of arg-1 with villager spawn egg named "&aPet Llama" with lore "&3» Make 100 Villager Trades", "&7   ", and "&7? / 100 " to be unstealable
+
+        if {quest_pet_bamboo.amountMined.%arg-1's uuid%} is not set:
+            set {quest_pet_bamboo.amountMined.%arg-1's uuid%} to 0
+        format slot 13 of arg-1 with bamboo named "&aPet Panda" with lore "&3» Harvest 200,000 Bamboo", "&7   ", and "&7%{quest_pet_bamboo.amountMined.%arg-1's uuid%}% / 200,000 " to be unstealable
+
+        format slot 14 of arg-1 with snowball named "&aPet Polar Bear" with lore "&3» Craft 900 Snow Blocks", "&7   ", and "&7? / 900 " to be unstealable
+
+        if {quest_pet_seagrass.amountMined.%arg-1's uuid%} is not set:
+            set {quest_pet_seagrass.amountMined.%arg-1's uuid%} to 0
+        format slot 15 of arg-1 with seagrass named "&aPet Turtle" with lore "&3» Harvest 640 Seagrass", "&7   ", and "&7%{quest_pet_seagrass.amountMined.%arg-1's uuid%}% / 640 " to be unstealable
+
+        if {quest_pet_witch.amountMined.%arg-1's uuid%} is not set:
+            set {quest_pet_witch.amountMined.%arg-1's uuid%} to 0
+        format slot 16 of arg-1 with red mushroom named "&aPet Mooshroom" with lore "&3» Kill 100 Witches", "&7   ", and "&7%{quest_pet_witch.amountMined.%arg-1's uuid%}% / 100 " to be unstealable
+
+        format slot 19 of arg-1 with raw salmon named "&aPet Axolotl" with lore "&3» Catch 200 Fish", "&7   ", and "&7? / 200 " to be unstealable
+
+        format slot 20 of arg-1 with nether wart block named "&aPet Rabbit" with lore "&3» Craft 320 Netherwart Blocks", "&7   ", and "&7? / 320 " to be unstealable
+
+        if {quest_pet_hoglin.amountMined.%arg-1's uuid%} is not set:
+            set {quest_pet_hoglin.amountMined.%arg-1's uuid%} to 0
+        format slot 21 of arg-1 with raw porkchop named "&aPet Hoglin" with lore "&3» Kill 300 Pigs", "&7   ", and "&7%{quest_pet_hoglin.amountMined.%arg-1's uuid%}% / 300 " to be unstealable
+
+
+on break:
+    #send "%event-block%" to player
+    if event-block is bee nest:
+        add 1 to {quest_pet_beehive.amountMined.%player's uuid%}
+        if {quest_pet_beehive.amountMined.%player's uuid%} >= 25:
+            set {quest_pet_beehive.amountMined.%player's uuid%} to 0
+
+on pick up:
+    #send "%event-item%" to player
+    if "%event-item%" contains "sweet berries":
+        #send "contains" to player
+        add item amount of item to {quest_pet_sweetberry.amountMined.%player's uuid%}
+        if {quest_pet_sweetberry.amountMined.%player's uuid%} >= 500:
+            set {quest_pet_sweetberry.amountMined.%player's uuid%} to 0
+
+# villager trade counter not found
+
+on pick up:
+    if "%event-item%" contains "bamboo":
+        add item amount of item to {quest_pet_bamboo.amountMined.%player's uuid%}
+        if {quest_pet_bamboo.amountMined.%player's uuid%} >= 200000:
+            set {quest_pet_bamboo.amountMined.%player's uuid%} to 0
+
+on craft:
+    #send "%event-item%" to player
+    if "%event-item%" contains "snow block":
+        add item amount of item to {quest_pet_snowblock.amountMined.%player's uuid%}
+        if {quest_pet_snowblock.amountMined.%player's uuid%} >= 900:
+            set {quest_pet_snowblock.amountMined.%player's uuid%} to 0
+
+on pick up:
+    if "%event-item%" contains "seagrass":
+        add 1 to {quest_pet_seagrass.amountMined.%player's uuid%}
+        if {quest_pet_seagrass.amountMined.%player's uuid%} >= 640:
+            set {quest_pet_seagrass.amountMined.%player's uuid%} to 0
+
+on death:
+    if victim is witch:
+        add 1 to {quest_pet_witch.amountMined.%attacker's uuid%}
+        if {quest_pet_witch.amountMined.%attacker's uuid%} >= 100:
+            set {quest_pet_witch.amountMined.%attacker's uuid%} to 0
+
+# player catches fish not found
+
+on craft:
+    if event-block is nether wart block:
+        add 1 to {quest_pet_netherwartblock.amountMined.%player's uuid%}
+        if {quest_pet_netherwartblock.amountMined.%player's uuid%} >= 320:
+            set {quest_pet_netherwartblock.amountMined.%player's uuid%} to 0
+
+on death:
+    if victim is pig:
+        add 1 to {quest_pet_hoglin.amountMined.%attacker's uuid%}
+        if {quest_pet_hoglin.amountMined.%attacker's uuid%} >= 300:
+            set {quest_pet_hoglin.amountMined.%attacker's uuid%} to 0

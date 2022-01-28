@@ -1,0 +1,63 @@
+#
+#
+# Player Duels Skript
+# NOT COMPLETE
+#
+
+on join:
+    set {player_duels.hasBeenChallenged.%player's uuid%} to false
+    set {player_duels.sentChallenge.%player's uuid%} to false
+
+on tab complete of "/duel":
+    set tab completions for position 2 to "friendly" and "staked"
+
+
+command /duel <player> [<text>]:
+    permission: luumiz.player_duels.general
+    trigger:
+        if arg-1 is "help":
+            send "[&6&lDUEL&f] Usage: /duel player [friendly | staked]" to player
+        else if arg-1 or arg-2 is not set:
+            send "[&6&lDUEL&f] Usage: /duel player [friendly | staked]" to player
+
+        else if arg-2 is "friendly":
+            if arg-1 has permission "luumiz.player_duels.friendly":
+                if {player_duels.sentChallenge.%player's uuid%} is false:
+                    # friendly duel code 
+                    set {player_duels.hasBeenChallenged.%arg-1's uuid%} to true
+                    set {player_duels.sentChallenge.%player's uuid%} to true
+
+                    set {player_duels.player.%player%.challenged} to arg-1
+
+                    send "[&6&lDUEL&f] %player% requests to duel you! <run command:/challenge accept>&a&lACCEPT<reset> <run command:/challenge deny>&c&lDENY<reset>" to arg-1
+                    send "[&6&lDUEL&f] You have 60 seconds before the request is denied." to arg-1
+
+                    wait 60 seconds
+                    set {player_duels.hasBeenChallenged.%arg-1's uuid%} to false
+                    set {player_duels.sentChallenge.%player's uuid%} to false
+                else:
+                    send "[&6&lDUEL&f] You already have an active duel request. Try again in a minute." to player
+
+            else:
+                send "[&6&lDUEL&f] Your desired opponent does not have permission to duel." to player
+
+        else if arg-2 is "staked":
+            if arg-1 has permission "luumiz.player_duels.staked":
+                # staked duel code 
+
+            else:
+                send "[&6&lDUEL&f] Your desired opponent does not have permission to duel." to player
+
+        else:
+            send "[&6&lDUEL&f] Usage: /duel player [friendly | staked]" to player
+            
+
+command /challenge <text> :
+    permission: luumiz.player_duels.general
+    trigger:
+        if {player_duels.hasBeenChallenged.%player's uuid%} is true:
+            if arg-1 is "accept":
+                send "accepted" to player
+            else if arg-1 is "deny":
+                send "denied" to player
+        
